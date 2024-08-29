@@ -1,6 +1,7 @@
 import Category from "./components/Category";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import MostSearchdCar from "./components/MostSearchdCar";
 
 function Home() {
   return (
@@ -11,6 +12,8 @@ function Home() {
       <Hero />
       {/* CATEGORY */}
       <Category />
+      {/* MOST SEARCHED CAR */}
+      <MostSearchdCar />
     </div>
   );
 }
