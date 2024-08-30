@@ -1,6 +1,8 @@
 import Category from "./components/Category";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import InfoSection from "./components/InfoSection";
 import MostSearchdCar from "./components/MostSearchdCar";
 
 function Home() {
@@ -14,6 +16,10 @@ function Home() {
       <Category />
       {/* MOST SEARCHED CAR */}
       <MostSearchdCar />
+      {/* INFOSECTION */}
+      <InfoSection />
+      {/* FOOTER */}
+      <Footer />
     </div>
   );
 }

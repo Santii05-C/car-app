@@ -7,7 +7,7 @@ function InfoSection() {
             <div className="relative h-64 sm:h-80 lg:h-full">
               <img
                 alt=""
-                src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                src="https://media.ed.edmunds-media.com/mercedes-benz/e-class/2024/oem/2024_mercedes-benz_e-class_sedan_e-350-4matic_fq_oem_1_1600.jpg"
                 className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
