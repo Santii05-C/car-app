@@ -1,5 +1,12 @@
 import FakerData from "@/Shared/FakerData";
 import CarItem from "./CarItem";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 function MostSearchdCar() {
   console.log(FakerData.carList);
@@ -9,11 +16,21 @@ function MostSearchdCar() {
         Most Searched Cars
       </h2>
 
-      {FakerData.carList.map((car, index) => (
-        <CarItem car={car} key={index} />
-      ))}
+      <Carousel>
+        <CarouselContent>
+          <CarouselItem>...</CarouselItem>
+          <CarouselItem>...</CarouselItem>
+          <CarouselItem>...</CarouselItem>
+          {FakerData.carList.map((car, index) => (
+            <CarItem car={car} key={index} />
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </div>
   );
 }
 
 export default MostSearchdCar;
+//1:12
