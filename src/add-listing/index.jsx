@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import carDetails from "./../Shared/carDetails.json";
 import InputField from "./components/InputField.jsx";
 import DropdownField from "./components/DropdownField";
+import TextAreaField from "./components/TextAreaField";
 
 function AddListing() {
   return (
@@ -25,6 +26,8 @@ function AddListing() {
                     <InputField item={item} />
                   ) : item.fieldType == "dropdown" ? (
                     <DropdownField item={item} />
+                  ) : item.fieldType == "textarea" ? (
+                    <TextAreaField item={item} />
                   ) : null}
                 </div>
               ))}
