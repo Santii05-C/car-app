@@ -3,7 +3,11 @@ import { Input } from "@/components/ui/input";
 function InputField({ item }) {
   return (
     <div>
-      <Input name={item?.name} />
+      <Input
+        type={item?.fieldType}
+        name={item?.name}
+        required={item?.required}
+      />
     </div>
   );
 }

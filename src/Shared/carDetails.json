@@ -154,8 +154,8 @@
       "icon": "FaCogs"
     },
     {
-      "label": "Fual Type",
-      "name": "fualType",
+      "label": "Fuel Type",
+      "name": "fuelType",
       "fieldType": "dropdown",
       "options": ["Petrol", "Diesel", "Electric", "Hybrid"],
       "required": true,

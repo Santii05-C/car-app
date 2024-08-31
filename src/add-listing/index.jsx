@@ -13,11 +13,15 @@ function AddListing() {
           {/* CAR DETAILS */}
           <div className="">
             <h2 className="font-medium text-xl mb-6">Car Details</h2>
-            <div className="">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {carDetails.carDetails.map((item, index) => (
                 <div className="" key={index}>
+                  <label className="text-sm">
+                    {item?.label}{" "}
+                    {item.required && <span className="text-red-500">*</span>}{" "}
+                  </label>
                   {item.fieldType == "text" || item.fieldType == "number" ? (
-                    <InputField />
+                    <InputField item={item} />
                   ) : null}
                 </div>
               ))}
