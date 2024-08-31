@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import carDetails from "./../Shared/carDetails.json";
 import InputField from "./components/InputField.jsx";
+import DropdownField from "./components/DropdownField";
 
 function AddListing() {
   return (
@@ -22,6 +23,8 @@ function AddListing() {
                   </label>
                   {item.fieldType == "text" || item.fieldType == "number" ? (
                     <InputField item={item} />
+                  ) : item.fieldType == "dropdown" ? (
+                    <DropdownField item={item} />
                   ) : null}
                 </div>
               ))}
