@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "./ui/separator";
 import { CiSearch } from "react-icons/ci";
-import Data from "@/Data";
+import Data from "@/Shared/Data";
 
 function Search() {
   return (

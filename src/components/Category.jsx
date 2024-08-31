@@ -1,4 +1,4 @@
-import Data from "@/Data";
+import Data from "@/Shared/Data";
 
 function Category() {
   return (
