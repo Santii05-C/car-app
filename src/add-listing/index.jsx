@@ -2,7 +2,9 @@ import Header from "@/components/Header";
 import carDetails from "./../Shared/carDetails.json";
 import InputField from "./components/InputField.jsx";
 import DropdownField from "./components/DropdownField";
-import TextAreaField from "./components/TextAreaField";
+import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
+import features from "./../Shared/features.json";
 
 function AddListing() {
   return (
@@ -27,14 +29,22 @@ function AddListing() {
                   ) : item.fieldType == "dropdown" ? (
                     <DropdownField item={item} />
                   ) : item.fieldType == "textarea" ? (
-                    <TextAreaField item={item} />
+                    <Textarea item={item} />
                   ) : null}
                 </div>
               ))}
             </div>
           </div>
+          <Separator className="my-6" />
           {/* FEATURES LIST  */}
-
+          <div className="">
+            <h2 className="font-medium">Features</h2>
+            <div className="">
+              {features.features.map((item, index) => (
+                <div className="" key={index}></div>
+              ))}
+            </div>
+          </div>
           {/* CAR IMAGES */}
         </form>
       </div>
