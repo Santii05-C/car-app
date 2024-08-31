@@ -5,8 +5,25 @@ import DropdownField from "./components/DropdownField";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import features from "./../Shared/features.json";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 function AddListing() {
+  const [formData, setFormData] = useState([]);
+
+  const handleInputChange = (name, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <div>
       <Header />
@@ -25,11 +42,20 @@ function AddListing() {
                     {item.required && <span className="text-red-500">*</span>}{" "}
                   </label>
                   {item.fieldType == "text" || item.fieldType == "number" ? (
-                    <InputField item={item} />
+                    <InputField
+                      item={item}
+                      handleInputChange={handleInputChange}
+                    />
                   ) : item.fieldType == "dropdown" ? (
-                    <DropdownField item={item} />
+                    <DropdownField
+                      item={item}
+                      handleInputChange={handleInputChange}
+                    />
                   ) : item.fieldType == "textarea" ? (
-                    <Textarea item={item} />
+                    <Textarea
+                      item={item}
+                      handleInputChange={handleInputChange}
+                    />
                   ) : null}
                 </div>
               ))}
@@ -38,14 +64,24 @@ function AddListing() {
           <Separator className="my-6" />
           {/* FEATURES LIST  */}
           <div className="">
-            <h2 className="font-medium">Features</h2>
-            <div className="">
+            <h2 className="font-medium text-xl my-6">Features</h2>
+            <div className=" grid grid-cols-2  sm:grid-cols-2 text-sm md:grid-cols-3 gap-2 ">
               {features.features.map((item, index) => (
-                <div className="" key={index}></div>
+                <div className="flex gap-2 items-center" key={index}>
+                  <Checkbox
+                    onCheckedChange={(value) =>
+                      handleInputChange(item.name, value)
+                    }
+                  />{" "}
+                  <h2>{item.label}</h2>
+                </div>
               ))}
             </div>
           </div>
           {/* CAR IMAGES */}
+          <div className="mt-10 flex justify-end">
+            <Button onClick={(e) => onSubmit(e)}>Submit</Button>
+          </div>
         </form>
       </div>
     </div>
