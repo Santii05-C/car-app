@@ -2,12 +2,15 @@ import Header from "@/components/Header";
 import carDetails from "./../Shared/carDetails.json";
 import InputField from "./components/InputField.jsx";
 import DropdownField from "./components/DropdownField";
-import { Textarea } from "@/components/ui/textarea";
+// import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import features from "./../Shared/features.json";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { db } from "./../../configs";
+import { CarListing } from "./../../configs/schema";
+import TextAreaField from "./components/TextAreaField";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
@@ -19,9 +22,18 @@ function AddListing() {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+
+    try {
+      const result = await db.insert(CarListing).values(formData);
+      if (result) {
+        console.log("Data Saved");
+      }
+    } catch (e) {
+      console.log("Error", e);
+    }
   };
 
   return (
@@ -52,7 +64,7 @@ function AddListing() {
                       handleInputChange={handleInputChange}
                     />
                   ) : item.fieldType == "textarea" ? (
-                    <Textarea
+                    <TextAreaField
                       item={item}
                       handleInputChange={handleInputChange}
                     />
