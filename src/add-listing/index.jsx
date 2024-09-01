@@ -15,12 +15,30 @@ import IconField from "./components/IconField";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
-
+  const [featuresData, setFeaturesData] = useState([]);
+  /**
+   * Used to capture user input from form
+   * @param {*} name
+   * @param {*} value
+   */
   const handleInputChange = (name, value) => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+  };
+
+  /**
+   * Used to save selected Feature List
+   * @param {*} name
+   * @param {*} value
+   */
+  const handleFeatureChange = (name, value) => {
+    setFeaturesData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    console.log(featuresData);
   };
 
   const onSubmit = async (e) => {
@@ -50,7 +68,7 @@ function AddListing() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {carDetails.carDetails.map((item, index) => (
                 <div className="" key={index}>
-                  <label className="text-sm flex gap-2 items-center mb-2">
+                  <label className="text-sm flex gap-2 items-center mb-1">
                     <IconField icon={item?.icon} />
                     {item?.label}
                     {item.required && <span className="text-red-500">*</span>}
@@ -84,7 +102,7 @@ function AddListing() {
                 <div className="flex gap-2 items-center" key={index}>
                   <Checkbox
                     onCheckedChange={(value) =>
-                      handleInputChange(item.name, value)
+                      handleFeatureChange(item.name, value)
                     }
                   />{" "}
                   <h2>{item.label}</h2>
