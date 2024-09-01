@@ -46,7 +46,10 @@ function AddListing() {
     console.log(formData);
 
     try {
-      const result = await db.insert(CarListing).values(formData);
+      const result = await db.insert(CarListing).values({
+        ...formData,
+        features: featuresData,
+      });
       if (result) {
         console.log("Data Saved");
       }
