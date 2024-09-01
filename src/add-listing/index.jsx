@@ -11,6 +11,7 @@ import { useState } from "react";
 import { db } from "./../../configs";
 import { CarListing } from "./../../configs/schema";
 import TextAreaField from "./components/TextAreaField";
+import IconField from "./components/IconField";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
@@ -49,9 +50,10 @@ function AddListing() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {carDetails.carDetails.map((item, index) => (
                 <div className="" key={index}>
-                  <label className="text-sm">
-                    {item?.label}{" "}
-                    {item.required && <span className="text-red-500">*</span>}{" "}
+                  <label className="text-sm flex gap-2 items-center mb-2">
+                    <IconField icon={item?.icon} />
+                    {item?.label}
+                    {item.required && <span className="text-red-500">*</span>}
                   </label>
                   {item.fieldType == "text" || item.fieldType == "number" ? (
                     <InputField

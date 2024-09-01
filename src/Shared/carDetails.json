@@ -20,7 +20,7 @@
       "name": "originalPrice",
       "fieldType": "text",
       "column": 1,
-      "icon": "FaDolloarSing"
+      "icon": "FaDollarSign"
     },
     {
       "label": "Selling Price",
@@ -56,7 +56,7 @@
       "required": true,
       "options": ["New", "Used", "Certified Pre-Owned"],
       "column": 1,
-      "icon": "FaCherckCircle"
+      "icon": "FaCheckCircle"
     },
     {
       "label": "Type",
