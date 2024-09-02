@@ -1,3 +1,5 @@
+import { storage } from "configs/firebaseConfig";
+import { ref } from "firebase/storage";
 import { useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 
@@ -15,6 +17,13 @@ function UploadImages() {
   const onImageRemove = (image, index) => {
     const result = selectedFilesList.filter((item) => item != image);
     setSelectedFilesList(result);
+  };
+
+  const UploadImage = () => {
+    selectedFilesList.forEach((file) => {
+      const fileName = Date.now() + "jpeg";
+      const storegeRef = ref(storage);
+    });
   };
 
   return (
