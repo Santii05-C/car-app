@@ -13,10 +13,11 @@ import { CarListing } from "./../../configs/schema";
 import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
-
+//2:55
 function AddListing() {
   const [formData, setFormData] = useState([]);
   const [featuresData, setFeaturesData] = useState([]);
+  const [triggerUploadImage, setTriggerUploadImage] = useState();
   /**
    * Used to capture user input from form
    * @param {*} name
@@ -116,12 +117,11 @@ function AddListing() {
           </div>
           {/* CAR IMAGES */}
           <Separator className="my-6" />
-
+          <UploadImages />
           <div className="mt-10 flex justify-end">
             <Button onClick={(e) => onSubmit(e)}>Submit</Button>
           </div>
         </form>
-        <UploadImages />
       </div>
     </div>
   );

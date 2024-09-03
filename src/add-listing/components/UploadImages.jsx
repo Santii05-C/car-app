@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { storage } from "./../../../configs/firebaseConfig";
-import { ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 
@@ -20,16 +20,22 @@ function UploadImages() {
     setSelectedFilesList(result);
   };
 
-  const UploadImage = () => {
-    selectedFilesList.forEach((file) => {
+  const UploadImageToServer = async() => {
+    await selectedFilesList.forEach((file) => {
       const fileName = Date.now() + ".jpeg";
       const storageRef = ref(storage, "car-app/" + fileName);
       const metaData = {
         contentType: "image/jpeg",
       };
-      uploadBytes(storageRef, file, metaData).then((snapShop) => {
-        console.log("Uploaded File");
-      });
+      await uploadBytes(storageRef, file, metaData)
+        .then((snapShop) => {
+          console.log("Uploaded File");
+        })
+        .then((resp) => {
+          getDownloadURL(storageRef).then(async (downloadUrl) => {
+            console.log(downloadUrl);
+          });
+        });
     });
   };
 
@@ -65,7 +71,6 @@ function UploadImages() {
           className="opacity-0"
         />
       </div>
-      <Button onClick={UploadImage}>Upload Image</Button>
     </div>
   );
 }
