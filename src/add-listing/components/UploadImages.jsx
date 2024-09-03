@@ -1,5 +1,6 @@
-import { storage } from "configs/firebaseConfig";
-import { ref } from "firebase/storage";
+import { Button } from "@/components/ui/button";
+import { storage } from "./../../../configs/firebaseConfig";
+import { ref, uploadBytes } from "firebase/storage";
 import { useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 
@@ -21,8 +22,14 @@ function UploadImages() {
 
   const UploadImage = () => {
     selectedFilesList.forEach((file) => {
-      const fileName = Date.now() + "jpeg";
-      const storegeRef = ref(storage);
+      const fileName = Date.now() + ".jpeg";
+      const storageRef = ref(storage, "car-app/" + fileName);
+      const metaData = {
+        contentType: "image/jpeg",
+      };
+      uploadBytes(storageRef, file, metaData).then((snapShop) => {
+        console.log("Uploaded File");
+      });
     });
   };
 
@@ -58,6 +65,7 @@ function UploadImages() {
           className="opacity-0"
         />
       </div>
+      <Button onClick={UploadImage}>Upload Image</Button>
     </div>
   );
 }

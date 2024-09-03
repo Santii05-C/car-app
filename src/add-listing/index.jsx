@@ -116,11 +116,12 @@ function AddListing() {
           </div>
           {/* CAR IMAGES */}
           <Separator className="my-6" />
-          <UploadImages />
+
           <div className="mt-10 flex justify-end">
             <Button onClick={(e) => onSubmit(e)}>Submit</Button>
           </div>
         </form>
+        <UploadImages />
       </div>
     </div>
   );
