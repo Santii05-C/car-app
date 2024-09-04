@@ -51,6 +51,7 @@ function UploadImages({ triggleUploadImages }) {
         });
     });
   };
+  //3:02
 
   return (
     <div>
