@@ -13,7 +13,7 @@ import { CarListing } from "./../../configs/schema";
 import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
-//2:55
+
 function AddListing() {
   const [formData, setFormData] = useState([]);
   const [featuresData, setFeaturesData] = useState([]);

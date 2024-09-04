@@ -3,6 +3,8 @@ import { storage } from "./../../../configs/firebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
+import { db } from "./../../../configs";
+import { CarImages } from "./../../../configs/schema";
 
 function UploadImages({ triggleUploadImages }) {
   const [selectedFilesList, setSelectedFilesList] = useState([]);
@@ -41,6 +43,10 @@ function UploadImages({ triggleUploadImages }) {
         .then((resp) => {
           getDownloadURL(storageRef).then(async (downloadUrl) => {
             console.log(downloadUrl);
+            await db.insert(CarImages).values({
+              imageUrl: downloadUrl,
+              CarListingId: triggleUploadImages,
+            });
           });
         });
     });
