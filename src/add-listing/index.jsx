@@ -15,12 +15,14 @@ import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
 import { BiLoaderAlt } from "react-icons/bi";
 import { Toaster } from "./../components/ui/sonner";
+import { useNavigate } from "react-router-dom";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
   const [featuresData, setFeaturesData] = useState([]);
   const [triggerUploadImages, setTriggerUploadImages] = useState();
   const [loader, setLoader] = useState(false);
+  const navigate = useNavigate();
   /**
    * Used to capture user input from form
    * @param {*} name
@@ -50,7 +52,7 @@ function AddListing() {
     setLoader(true);
     e.preventDefault();
     console.log(formData);
-    Toaster("Please Wait...");
+    Toaster("Event has been created.");
 
     try {
       const result = await db
@@ -129,7 +131,10 @@ function AddListing() {
           <Separator className="my-6" />
           <UploadImages
             triggleUploadImages={triggerUploadImages}
-            setLoader={(v) => setLoader(v)}
+            setLoader={(v) => {
+              setLoader(v);
+              navigate("/profile");
+            }}
           />
           <div className="mt-10 flex justify-end">
             <Button type="button" disable={loader} onClick={(e) => onSubmit(e)}>
