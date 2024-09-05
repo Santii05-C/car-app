@@ -6,7 +6,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { db } from "./../../../configs";
 import { CarImages } from "./../../../configs/schema";
 
-function UploadImages({ triggleUploadImages }) {
+function UploadImages({ triggleUploadImages, setLoader }) {
   const [selectedFilesList, setSelectedFilesList] = useState([]);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ function UploadImages({ triggleUploadImages }) {
   };
 
   const UploadImageToServer = async () => {
+    setLoader(true);
     await selectedFilesList.forEach(async (file) => {
       const fileName = Date.now() + ".jpeg";
       const storageRef = ref(storage, "car-app/" + fileName);
@@ -49,9 +50,9 @@ function UploadImages({ triggleUploadImages }) {
             });
           });
         });
+      setLoader(false);
     });
   };
-  //3:02
 
   return (
     <div>

@@ -13,11 +13,13 @@ import { CarListing } from "./../../configs/schema";
 import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
+import { BiLoaderAlt } from "react-icons/bi";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
   const [featuresData, setFeaturesData] = useState([]);
   const [triggerUploadImages, setTriggerUploadImages] = useState();
+  const [loader, setLoader] = useState(false);
   /**
    * Used to capture user input from form
    * @param {*} name
@@ -44,6 +46,7 @@ function AddListing() {
   };
 
   const onSubmit = async (e) => {
+    setLoader(true);
     e.preventDefault();
     console.log(formData);
 
@@ -58,6 +61,7 @@ function AddListing() {
       if (result) {
         console.log("Data Saved");
         setTriggerUploadImages(result[0]?.id);
+        setLoader(false);
       }
     } catch (e) {
       console.log("Error", e);
@@ -121,9 +125,18 @@ function AddListing() {
           </div>
           {/* CAR IMAGES */}
           <Separator className="my-6" />
-          <UploadImages triggleUploadImages={triggerUploadImages} />
+          <UploadImages
+            triggleUploadImages={triggerUploadImages}
+            setLoader={(v) => setLoader(v)}
+          />
           <div className="mt-10 flex justify-end">
-            <Button onClick={(e) => onSubmit(e)}>Submit</Button>
+            <Button type="button" disable={loader} onClick={(e) => onSubmit(e)}>
+              {!loader ? (
+                "Submit"
+              ) : (
+                <BiLoaderAlt className="animate-spin text-lg" />
+              )}
+            </Button>
           </div>
         </form>
       </div>
