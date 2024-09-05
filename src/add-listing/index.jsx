@@ -14,6 +14,7 @@ import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
 import { BiLoaderAlt } from "react-icons/bi";
+import { Toaster } from "./../components/ui/sonner";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
@@ -49,6 +50,7 @@ function AddListing() {
     setLoader(true);
     e.preventDefault();
     console.log(formData);
+    Toaster("Please Wait...");
 
     try {
       const result = await db
