@@ -14,7 +14,7 @@ import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
 import { BiLoaderAlt } from "react-icons/bi";
-import { Toaster } from "./../components/ui/sonner";
+// import { Toaster } from "./../components/ui/sonner";
 import { useNavigate } from "react-router-dom";
 
 function AddListing() {
@@ -52,7 +52,8 @@ function AddListing() {
     setLoader(true);
     e.preventDefault();
     console.log(formData);
-    Toaster("Event has been created.");
+    // Toaster("Event has been created.");
+    //toaster no envia a la base de dato
 
     try {
       const result = await db
