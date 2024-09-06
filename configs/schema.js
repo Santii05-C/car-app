@@ -8,7 +8,6 @@ export const CarListing = pgTable("carListing", {
   sellingPrice: varchar("sellingPrice").notNull(),
   category: varchar("category").notNull(),
   condition: varchar("condition").notNull(),
-  type: varchar("type").notNull(),
   make: varchar("make").notNull(),
   model: varchar("model").notNull(),
   year: varchar("year").notNull(),

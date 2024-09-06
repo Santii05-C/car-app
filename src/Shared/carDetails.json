@@ -58,15 +58,7 @@
       "column": 1,
       "icon": "FaCheckCircle"
     },
-    {
-      "label": "Type",
-      "name": "type",
-      "fieldType": "dropdown",
-      "required": true,
-      "options": ["Electric", "Hybrid", "Petrol", "Diesel"],
-      "column": 1,
-      "icon": "FaChargingStation"
-    },
+
     {
       "label": "Make",
       "name": "make",
