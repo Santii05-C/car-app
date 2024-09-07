@@ -14,8 +14,9 @@ import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
 import { BiLoaderAlt } from "react-icons/bi";
-// import { Toaster } from "./../components/ui/sonner";
+import { toaster } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
@@ -23,6 +24,7 @@ function AddListing() {
   const [triggerUploadImages, setTriggerUploadImages] = useState();
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
+  const { user } = useUser();
   /**
    * Used to capture user input from form
    * @param {*} name
@@ -52,7 +54,7 @@ function AddListing() {
     setLoader(true);
     e.preventDefault();
     console.log(formData);
-    // Toaster("Event has been created.");
+    toaster("Event has been created.");
     //toaster no envia a la base de dato
 
     try {
@@ -61,6 +63,7 @@ function AddListing() {
         .values({
           ...formData,
           features: featuresData,
+          createdBy: user?.primaryEmailAddress?.emailAddress,
         })
         .returning({ id: CarListing.id });
       if (result) {
