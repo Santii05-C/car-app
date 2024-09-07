@@ -26,7 +26,7 @@ function AddListing() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
   const { user } = useUser();
-  console.log(user);
+
   /**
    * Used to capture user input from form
    * @param {*} name
