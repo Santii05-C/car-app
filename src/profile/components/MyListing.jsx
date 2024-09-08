@@ -3,11 +3,14 @@ import { useUser } from "@clerk/clerk-react";
 import { db } from "./../../../configs";
 import { CarImages, CarListing } from "./../../../configs/schema";
 import { desc, eq } from "drizzle-orm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Service from "@/Shared/Service";
+import CarItem from "@/components/CarItem";
 
 function MyListing() {
   const { user } = useUser();
+  const [carList, setCarList] = useState([]);
 
   useEffect(() => {
     user && GetUserCarListing();
@@ -20,7 +23,9 @@ function MyListing() {
       .where(eq(CarListing.createdBy, user?.primaryEmailAddress?.emailAddress))
       .orderBy(desc(CarListing.id));
 
-    console.log(result);
+    const resp = Service.FormatResult(result);
+    console.log(resp);
+    setCarList(resp);
   };
   return (
     <div className="mt-6">

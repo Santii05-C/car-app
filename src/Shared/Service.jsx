@@ -1,7 +1,8 @@
-const { CarImages } = require("configs/schema");
+import { CarImages } from "configs/schema";
 
 const FormatResult = (resp) => {
   let resutl = [];
+  let finalResult = [];
 
   resp.forEach((item) => {
     const listingId = item.carListing?.id;
@@ -12,10 +13,19 @@ const FormatResult = (resp) => {
       };
     }
 
-    if (item.images) {
+    if (item.CarImages) {
       result[listingId].images.push(item.CarImages);
     }
   });
+
+  result.forEach((item) => {
+    finalResult.push({
+      ...item.car,
+      images: item.images,
+    });
+  });
+
+  return finalResult;
 };
 
 export default {
