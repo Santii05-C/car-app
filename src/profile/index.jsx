@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+// import { Button } from "@/components/ui/button";
+// import { Link } from "react-router-dom";
 import MyListing from "./components/MyListing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -9,8 +9,8 @@ function Profile() {
     <div>
       <Header />
       <div className="px-10 md:px-20 my-10">
-        <Tabs defaultValue="account" className="w-[400px]">
-          <TabsList>
+        <Tabs defaultValue="my-listing" className="w-full">
+          <TabsList className="w-full flex justify-start">
             <TabsTrigger value="my-listing">My Listing</TabsTrigger>
             <TabsTrigger value="inbox">Inbox</TabsTrigger>
             <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -18,7 +18,8 @@ function Profile() {
           <TabsContent value="my-listing">
             <MyListing />
           </TabsContent>
-          <TabsContent value="password">Change your password here.</TabsContent>
+          <TabsContent value="inbox">Inbox Tab</TabsContent>
+          <TabsContent value="profile">Profile Tab</TabsContent>
         </Tabs>
       </div>
     </div>
