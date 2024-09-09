@@ -83,24 +83,27 @@ function AddListing() {
     console.log(formData);
     // toaster("Event has been created.");
     //toaster no envia a la base de dato
-
-    try {
-      const result = await db
-        .insert(CarListing)
-        .values({
-          ...formData,
-          features: featuresData,
-          createdBy: user?.primaryEmailAddress?.emailAddress,
-          postedOn: moment().format("DD/MMM/yyyy"),
-        })
-        .returning({ id: CarListing.id });
-      if (result) {
-        console.log("Data Saved");
-        setTriggerUploadImages(result[0]?.id);
-        setLoader(false);
+    //3:50
+    if (mode == "edit") {
+    } else {
+      try {
+        const result = await db
+          .insert(CarListing)
+          .values({
+            ...formData,
+            features: featuresData,
+            createdBy: user?.primaryEmailAddress?.emailAddress,
+            postedOn: moment().format("DD/MMM/yyyy"),
+          })
+          .returning({ id: CarListing.id });
+        if (result) {
+          console.log("Data Saved");
+          setTriggerUploadImages(result[0]?.id);
+          setLoader(false);
+        }
+      } catch (e) {
+        console.log("Error", e);
       }
-    } catch (e) {
-      console.log("Error", e);
     }
   };
 
@@ -156,7 +159,7 @@ function AddListing() {
                     onCheckedChange={(value) =>
                       handleFeatureChange(item.name, value)
                     }
-                    checked
+                    checked={featuresData?.[item.name]}
                   />
                   <h2>{item.label}</h2>
                 </div>
