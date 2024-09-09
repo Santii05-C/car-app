@@ -35,6 +35,14 @@ function MyListing() {
           <Button>+ Add New Listing</Button>
         </Link>
       </div>
+
+      <div className="">
+        {carList.map((item, index) => (
+          <div key={index}>
+            <CarItem car={item} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

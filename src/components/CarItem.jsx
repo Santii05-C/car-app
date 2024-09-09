@@ -11,7 +11,7 @@ function CarItem({ car }) {
         New
       </h2>
       <img
-        src={car?.image}
+        src={car?.images[0]?.imageUrl}
         width={"100%"}
         height={250}
         className="rounded-t-xl"
