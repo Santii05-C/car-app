@@ -27,6 +27,7 @@ function AddListing() {
   const [triggerUploadImages, setTriggerUploadImages] = useState();
   const [searchParams] = useSearchParams();
   const [loader, setLoader] = useState(false);
+  const [carInfo, setCarInfo] = useState();
   const navigate = useNavigate();
   const { user } = useUser();
 
@@ -47,6 +48,8 @@ function AddListing() {
       .where(eq(CarListing.id, recordId));
 
     const resp = Service.FormatResult(result);
+    setCarInfo(resp[0]);
+    setFeaturesData(resp[0].features);
   };
 
   /**
@@ -123,16 +126,19 @@ function AddListing() {
                     <InputField
                       item={item}
                       handleInputChange={handleInputChange}
+                      carInfo={carInfo}
                     />
                   ) : item.fieldType == "dropdown" ? (
                     <DropdownField
                       item={item}
                       handleInputChange={handleInputChange}
+                      carInfo={carInfo}
                     />
                   ) : item.fieldType == "textarea" ? (
                     <TextAreaField
                       item={item}
                       handleInputChange={handleInputChange}
+                      carInfo={carInfo}
                     />
                   ) : null}
                 </div>
@@ -150,7 +156,8 @@ function AddListing() {
                     onCheckedChange={(value) =>
                       handleFeatureChange(item.name, value)
                     }
-                  />{" "}
+                    checked
+                  />
                   <h2>{item.label}</h2>
                 </div>
               ))}
