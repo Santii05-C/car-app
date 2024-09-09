@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Service from "@/Shared/Service";
 import CarItem from "@/components/CarItem";
+import { FaTrashAlt } from "react-icons/fa";
 
 function MyListing() {
   const { user } = useUser();
@@ -40,6 +41,14 @@ function MyListing() {
         {carList.map((item, index) => (
           <div key={index}>
             <CarItem car={item} />
+            <div className="p-2 bg-gray-50 rounded-lg flex justify-between gap-3">
+              <Button variant="outline" className="w-full">
+                Edit
+              </Button>
+              <Button variant="destructive">
+                <FaTrashAlt />
+              </Button>
+            </div>
           </div>
         ))}
       </div>
