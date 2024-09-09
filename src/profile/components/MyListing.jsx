@@ -36,7 +36,7 @@ function MyListing() {
         </Link>
       </div>
 
-      <div className="">
+      <div className="grid grid-cols-2 md:grid-cols 3 lg:grid-cols-4 mt-7 gap-5">
         {carList.map((item, index) => (
           <div key={index}>
             <CarItem car={item} />

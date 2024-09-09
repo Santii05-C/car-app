@@ -13,8 +13,8 @@ const FormatResult = (resp) => {
       };
     }
 
-    if (item.CarImages) {
-      result[listingId].images.push(item.CarImages);
+    if (item.carImages) {
+      result[listingId].images.push(item.carImages);
     }
   });
 
