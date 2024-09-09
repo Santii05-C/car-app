@@ -7,25 +7,47 @@ import { Separator } from "@/components/ui/separator";
 import features from "./../Shared/features.json";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "./../../configs";
-import { CarListing } from "./../../configs/schema";
+import { CarImages, CarListing } from "./../../configs/schema";
 import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
 import { BiLoaderAlt } from "react-icons/bi";
 // import { toaster } from "./../com";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import moment from "moment";
+import { eq } from "drizzle-orm";
+import Service from "@/Shared/Service";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
   const [featuresData, setFeaturesData] = useState([]);
   const [triggerUploadImages, setTriggerUploadImages] = useState();
+  const [searchParams] = useSearchParams();
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
   const { user } = useUser();
+
+  const mode = searchParams.get("mode");
+  const recordId = searchParams.get("id");
+
+  useEffect(() => {
+    if (mode == "edit") {
+      GetListingDetail();
+    }
+  }, []);
+
+  const GetListingDetail = async () => {
+    const result = await db
+      .select()
+      .from(CarListing)
+      .innerJoin(CarImages, eq(CarListing.id, CarImages.CarListingId))
+      .where(eq(CarListing.id, recordId));
+
+    const resp = Service.FormatResult(result);
+  };
 
   /**
    * Used to capture user input from form
