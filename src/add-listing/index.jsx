@@ -14,7 +14,7 @@ import TextAreaField from "./components/TextAreaField";
 import IconField from "./components/IconField";
 import UploadImages from "./components/UploadImages";
 import { BiLoaderAlt } from "react-icons/bi";
-// import { toaster } from "./../com";
+import { toast } from "sonner";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import moment from "moment";
@@ -49,6 +49,7 @@ function AddListing() {
 
     const resp = Service.FormatResult(result);
     setCarInfo(resp[0]);
+    setFormData(resp[0]);
     setFeaturesData(resp[0].features);
   };
 
@@ -81,10 +82,24 @@ function AddListing() {
     setLoader(true);
     e.preventDefault();
     console.log(formData);
-    // toaster("Event has been created.");
-    //toaster no envia a la base de dato
-    //3:50
+    toast("Please Wait...");
+
     if (mode == "edit") {
+      const result = await db
+        .update(CarListing)
+        .set({
+          ...formData,
+          features: featuresData,
+          createdBy: user?.primaryEmailAddress?.emailAddress,
+          userName: user?.fullName,
+          userImageUrl: user?.imageUrl,
+          postedOn: moment().format("DD/MMM/yyyy"),
+        })
+        .where(eq(CarListing.id, recordId))
+        .returning({ id: CarListing.id });
+      console.log(result);
+      navigate("/profile");
+      setLoader(false);
     } else {
       try {
         const result = await db
@@ -93,6 +108,8 @@ function AddListing() {
             ...formData,
             features: featuresData,
             createdBy: user?.primaryEmailAddress?.emailAddress,
+            userName: user?.fullName,
+            userImageUrl: user?.imageUrl,
             postedOn: moment().format("DD/MMM/yyyy"),
           })
           .returning({ id: CarListing.id });
@@ -170,6 +187,7 @@ function AddListing() {
           <Separator className="my-6" />
           <UploadImages
             triggleUploadImages={triggerUploadImages}
+            //3:55sw
             setLoader={(v) => {
               setLoader(v);
               navigate("/profile");
