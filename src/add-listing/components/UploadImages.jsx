@@ -6,9 +6,18 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { db } from "./../../../configs";
 import { CarImages } from "./../../../configs/schema";
 
-function UploadImages({ triggleUploadImages, setLoader, carInfo }) {
+function UploadImages({ triggleUploadImages, setLoader, carInfo, mode }) {
   const [selectedFilesList, setSelectedFilesList] = useState([]);
   const [editCarImageList, setEditCarImageList] = useState([]);
+  //3:58
+  useEffect(() => {
+    if (mode == "edit") {
+      carInfo?.images.forEach((image) => {
+        setEditCarImageList((prev) => [...prev, image?.imageUrl]);
+        console.log(image);
+      });
+    }
+  }, [mode]);
 
   useEffect(() => {
     if (triggleUploadImages) {
