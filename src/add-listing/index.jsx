@@ -187,7 +187,8 @@ function AddListing() {
           <Separator className="my-6" />
           <UploadImages
             triggleUploadImages={triggerUploadImages}
-            //3:55sw
+            carInfo={carInfo}
+            mode={mode}
             setLoader={(v) => {
               setLoader(v);
               navigate("/profile");

@@ -6,8 +6,9 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { db } from "./../../../configs";
 import { CarImages } from "./../../../configs/schema";
 
-function UploadImages({ triggleUploadImages, setLoader }) {
+function UploadImages({ triggleUploadImages, setLoader, carInfo }) {
   const [selectedFilesList, setSelectedFilesList] = useState([]);
+  const [editCarImageList, setEditCarImageList] = useState([]);
 
   useEffect(() => {
     if (triggleUploadImages) {
