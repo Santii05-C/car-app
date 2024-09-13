@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 import { db } from "./../../../configs";
 import { CarImages } from "./../../../configs/schema";
+import { eq } from "drizzle-orm";
 
 function UploadImages({ triggleUploadImages, setLoader, carInfo, mode }) {
   const [selectedFilesList, setSelectedFilesList] = useState([]);
@@ -12,12 +13,12 @@ function UploadImages({ triggleUploadImages, setLoader, carInfo, mode }) {
   //3:58
   useEffect(() => {
     if (mode == "edit") {
+      setEditCarImageList([]);
       carInfo?.images.forEach((image) => {
         setEditCarImageList((prev) => [...prev, image?.imageUrl]);
-        console.log(image);
       });
     }
-  }, [mode]);
+  }, [carInfo]);
 
   useEffect(() => {
     if (triggleUploadImages) {
@@ -37,6 +38,15 @@ function UploadImages({ triggleUploadImages, setLoader, carInfo, mode }) {
   const onImageRemove = (image, index) => {
     const result = selectedFilesList.filter((item) => item != image);
     setSelectedFilesList(result);
+  };
+
+  const onImageRemoveFromDB = async (image, index) => {
+    const result = await db
+      .delete(CarImages)
+      .where(eq(CarImages.id, carInfo?.images[index]?.id))
+      .returning({ id: CarImages.id });
+    const imageList = editCarImageList.filter((item) => item != image);
+    setEditCarImageList(imageList);
   };
 
   const UploadImageToServer = async () => {
@@ -69,14 +79,14 @@ function UploadImages({ triggleUploadImages, setLoader, carInfo, mode }) {
       <h2 className="font-medium text-xl my-3">Upload Car Images</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
         {mode == "edit" &&
-          selectedFilesList.map((image, index) => (
+          editCarImageList.map((image, index) => (
             <div key={index}>
               <IoMdCloseCircle
                 className="absolute m-2 text-lg text-white cursor-pointer"
-                onClick={() => onImageRemove(image, index)}
+                onClick={() => onImageRemoveFromDB(image, index)}
               />
               <img
-                src={URL.createObjectURL(image)}
+                src={image}
                 className="w-full h-[130px] object-cover rounded-xl"
               />
             </div>
