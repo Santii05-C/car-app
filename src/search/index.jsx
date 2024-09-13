@@ -1,19 +1,22 @@
+import { useEffect, useState } from "react";
+import { db } from "./../../configs";
+import { CarImages, CarListing } from "./../../configs/schema";
+import { eq } from "drizzle-orm";
+import { useSearchParams } from "react-router-dom";
+import Service from "@/Shared/Service";
 import Header from "@/components/Header";
 import Search from "@/components/Search";
-import { db } from "./../../../configs";
-import { CarImages, CarListing } from "./../../../configs/schema";
-import { eq } from "drizzle-orm";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Service from "@/Shared/Service";
 import CarItem from "@/components/CarItem";
 
-function SearchByCategory() {
-  const { category } = useParams();
+function SearchByOptions() {
+  const [searchParams, setParams] = useSearchParams();
   const [carList, setCarList] = useState([]);
+  const condition = searchParams.get("cars");
+  const make = searchParams.get("make");
+  const price = searchParams.get("price");
 
   useEffect(() => {
-    GetCarList();
+    GetCarList;
   }, []);
 
   const GetCarList = async () => {
@@ -21,12 +24,14 @@ function SearchByCategory() {
       .select()
       .from(CarListing)
       .innerJoin(CarImages, eq(CarListing.id, CarImages.CarListingId))
-      .where(eq(CarListing.category, category));
+      .where(condition != undefined && eq(CarListing.condition, condition))
+      .where(make != undefined && eq(CarListing.make, make));
 
     const resp = Service.FormatResult(result);
+    console.log(resp);
     setCarList(resp);
+    //4:31
   };
-
   return (
     <div>
       <Header />
@@ -35,7 +40,7 @@ function SearchByCategory() {
         <Search />
       </div>
       <div className="p-10 md:px-20">
-        <h2 className="font-bold text-4xl ">{category}</h2>
+        <h2 className="font-bold text-4xl ">Search Result</h2>
 
         {/* LIST OF CARLIST */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-7">
@@ -57,4 +62,4 @@ function SearchByCategory() {
   );
 }
 
-export default SearchByCategory;
+export default SearchByOptions;

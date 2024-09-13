@@ -10,6 +10,7 @@ import Profile from "./profile";
 import AddListing from "./add-listing";
 import { Toaster } from "sonner";
 import SearchByCategory from "./search/[category]";
+import SearchByOptions from "./search";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/add-listing",
     element: <AddListing />,
+  },
+  {
+    path: "/search",
+    element: <SearchByOptions />,
   },
   {
     path: "/search/:category",
