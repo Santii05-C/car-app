@@ -9,14 +9,15 @@ import Search from "@/components/Search";
 import CarItem from "@/components/CarItem";
 
 function SearchByOptions() {
-  const [searchParams, setParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [carList, setCarList] = useState([]);
   const condition = searchParams.get("cars");
   const make = searchParams.get("make");
   const price = searchParams.get("price");
+  console.log(carList);
 
   useEffect(() => {
-    GetCarList;
+    GetCarList();
   }, []);
 
   const GetCarList = async () => {
@@ -30,7 +31,6 @@ function SearchByOptions() {
     const resp = Service.FormatResult(result);
     console.log(resp);
     setCarList(resp);
-    //4:31
   };
   return (
     <div>

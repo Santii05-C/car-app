@@ -24,12 +24,14 @@ function Search() {
         <SelectContent>
           <SelectItem value="New">New</SelectItem>
           <SelectItem value="Used">Used</SelectItem>
-          <SelectItem value="Certified Pre-Owwend">
-            Certified Pre-Owwend
+          <SelectItem value="Certified Pre-Owend">
+            Certified Pre-Owend
           </SelectItem>
         </SelectContent>
       </Select>
+
       <Separator orientation="vertical" className="hidden md:block" />
+
       <Select onValueChange={(value) => setMake(value)}>
         <SelectTrigger className=" outline-none md:border-none w-full shadow-none text-lg">
           <SelectValue placeholder="Car Markes" />
@@ -42,7 +44,9 @@ function Search() {
           ))}
         </SelectContent>
       </Select>
+
       <Separator orientation="vertical" className="hidden md:block" />
+
       <Select onValueChange={(value) => setPrice(value)}>
         <SelectTrigger className=" outline-none md:border-none w-full shadow-none text-lg">
           <SelectValue placeholder="Pricing" />

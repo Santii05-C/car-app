@@ -29,7 +29,7 @@ function MostSearchdCar() {
       .limit(10);
 
     const resp = Service.FormatResult(result);
-    console.log(resp);
+    // console.log(resp);
     setCarList(resp);
   };
   return (
