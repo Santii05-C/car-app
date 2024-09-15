@@ -2,6 +2,7 @@ import IconField from "@/add-listing/components/IconField";
 import CarSpecification from "@/Shared/CarSpecification";
 
 function Specification({ carDetail }) {
+  console.log(carDetail);
   return (
     <div className="p-10 rounded-xl border shadow-md mt-7">
       {carDetail ? (
@@ -19,5 +20,5 @@ function Specification({ carDetail }) {
     </div>
   );
 }
-
+//5:24
 export default Specification;
