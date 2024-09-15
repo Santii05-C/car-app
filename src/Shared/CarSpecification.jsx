@@ -31,7 +31,7 @@ export default [
   },
   {
     label: "Transmission",
-    name: "Transmission",
+    name: "transmission",
     icon: "FaCogs",
   },
   {

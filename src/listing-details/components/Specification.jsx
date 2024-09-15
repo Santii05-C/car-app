@@ -2,7 +2,7 @@ import IconField from "@/add-listing/components/IconField";
 import CarSpecification from "@/Shared/CarSpecification";
 
 function Specification({ carDetail }) {
-  console.log(carDetail);
+  //   console.log(carDetail.transmission);
   return (
     <div className="p-10 rounded-xl border shadow-md mt-7">
       {carDetail ? (
