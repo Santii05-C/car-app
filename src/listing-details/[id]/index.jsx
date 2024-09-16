@@ -14,6 +14,7 @@ import Specification from "../components/Specification";
 import OwnersDetail from "../components/OwnersDetail";
 import Footer from "@/components/Footer";
 import FinanacialCalculator from "../components/FinanacialCalculator";
+import MostSearchdCar from "@/components/MostSearchdCar";
 
 function ListingDetails() {
   const { id } = useParams();
@@ -63,6 +64,7 @@ function ListingDetails() {
             <OwnersDetail carDetail={carDetail} />
           </div>
         </div>
+        <MostSearchdCar />
       </div>
       <Footer />
     </div>
