@@ -9,7 +9,7 @@ function Inbox() {
   useEffect(() => {
     if (user) {
       const id = (user.primaryEmailAddress?.emailAddress).split("@")[0];
-      //5:56
+      setUserId(userId);
     }
   }, [user]);
 
@@ -18,14 +18,11 @@ function Inbox() {
       <div style={{ width: "100vw", height: "100vh" }}>
         <SendBirdProvider
           appId={import.meta.env.VITE_SENDBIRD_APP_ID}
+          userId={userId}
+          nickname={user?.imageUrl}
+          profileUrl={user?.imageUrl}
+          allowProfileEdit={true}
         ></SendBirdProvider>
-        <SendbirdApp
-          // You can find your Sendbird application ID on the Sendbird dashboard.
-          appId={import.meta.env.VITE_SENDBIRD_APP_ID}
-          // Specify the user ID you've created on the dashboard.
-          // Or you can create a user by specifying a unique userId.
-          userId={"santii"}
-        />
       </div>
     </div>
   );
