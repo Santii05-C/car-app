@@ -50,4 +50,6 @@ const CreateSendBirdUser = (userId, nickName, profileUrl) => {
 
 export default {
   FormatResult,
+  CreateSendBirdUser,
 };
+//6:7
