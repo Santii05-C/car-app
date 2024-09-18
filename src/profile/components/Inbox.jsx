@@ -22,7 +22,9 @@ function Inbox() {
           nickname={user?.imageUrl}
           profileUrl={user?.imageUrl}
           allowProfileEdit={true}
-        ></SendBirdProvider>
+        >
+          {/* CHANNEL LIST */}
+        </SendBirdProvider>
       </div>
     </div>
   );

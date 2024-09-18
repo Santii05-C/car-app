@@ -1,14 +1,17 @@
 import { Button } from "@/components/ui/button";
 import Service from "@/Shared/Service";
 import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 
 function OwnersDetail({ carDetail }) {
   const { user } = useUser();
+  const navigation = useNavigate();
 
   const OnMessageOwerButtonClick = async () => {
+    const userId = user.primaryEmailAddress.emailAddress.split("@")[0];
+    const ownerUserId = carDetail?.createdBy.split("@")[0];
     //CREATE CURRENT USER ID
     try {
-      const userId = user.primaryEmailAddress.emailAddress.split("@")[0];
       await Service.CreateSendBirdUser(
         userId,
         user?.fullName,
@@ -19,7 +22,6 @@ function OwnersDetail({ carDetail }) {
     } catch (e) {}
     //OWNER USER ID
     try {
-      const ownerUserId = carDetail?.createdBy.split("@")[0];
       await Service.CreateSendBirdUser(
         ownerUserId,
         carDetail?.userName,
@@ -29,6 +31,16 @@ function OwnersDetail({ carDetail }) {
       });
     } catch (e) {}
     //CREATE CHANNEL
+    try {
+      await Service.CreateSendBirdChannel(
+        [userId, ownerUserId],
+        carDetail?.listingTitle
+      ).then((resp) => {
+        console.log(resp);
+        console.log("Channel Created");
+        navigation("/profile");
+      });
+    } catch (e) {}
   };
 
   return (
