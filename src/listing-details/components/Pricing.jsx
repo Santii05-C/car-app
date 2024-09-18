@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { MdOutlineLocalOffer } from "react-icons/md";
 
 function Pricing({ carDetail }) {
-  console.log(carDetail);
   return (
     <div className="p-10 rounded-xl border shadow-md">
       <h2 className="">Out Price</h2>

@@ -18,6 +18,16 @@ function OwnersDetail({ carDetail }) {
       });
     } catch (e) {}
     //OWNER USER ID
+    try {
+      const ownerUserId = carDetail?.createdBy.split("@")[0];
+      await Service.CreateSendBirdUser(
+        ownerUserId,
+        carDetail?.userName,
+        carDetail?.userImageUrl
+      ).then((resp) => {
+        console.log(resp);
+      });
+    } catch (e) {}
     //CREATE CHANNEL
   };
 

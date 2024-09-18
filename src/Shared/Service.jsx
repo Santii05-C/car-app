@@ -32,7 +32,7 @@ const FormatResult = (resp) => {
 
 const CreateSendBirdUser = (userId, nickName, profileUrl) => {
   return axios.post(
-    "https://api-'+SendBirdApplicationId+'.sendbird.com/v3/users",
+    "https://api-" + SendBirdApplicationId + ".sendbird.com/v3/users",
     {
       user_id: userId,
       nickname: nickName,
@@ -52,4 +52,3 @@ export default {
   FormatResult,
   CreateSendBirdUser,
 };
-//6:7
