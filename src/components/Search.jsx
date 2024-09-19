@@ -15,17 +15,18 @@ function Search() {
   const [cars, setCars] = useState();
   const [make, setMake] = useState();
   const [price, setPrice] = useState();
+
   return (
-    <div className="p-2 md:p-5 bg-white rounded-md md:rounded-full flex-col md:flex md:flex-row gap-10 px-5 items-center w-[60%] ">
+    <div className="p-2 md:p-5 bg-white rounded-md md:rounded-full flex flex-col md:flex-row gap-4 md:gap-10 items-center w-full md:w-[60%]">
       <Select onValueChange={(value) => setCars(value)}>
-        <SelectTrigger className=" outline-none md:border-none w-full shadow-none text-lg">
+        <SelectTrigger className="outline-none md:border-none w-full shadow-none text-lg">
           <SelectValue placeholder="Cars" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="New">New</SelectItem>
           <SelectItem value="Used">Used</SelectItem>
-          <SelectItem value="Certified Pre-Owend">
-            Certified Pre-Owend
+          <SelectItem value="Certified Pre-Owned">
+            Certified Pre-Owned
           </SelectItem>
         </SelectContent>
       </Select>
@@ -33,8 +34,8 @@ function Search() {
       <Separator orientation="vertical" className="hidden md:block" />
 
       <Select onValueChange={(value) => setMake(value)}>
-        <SelectTrigger className=" outline-none md:border-none w-full shadow-none text-lg">
-          <SelectValue placeholder="Car Markes" />
+        <SelectTrigger className="outline-none md:border-none w-full shadow-none text-lg">
+          <SelectValue placeholder="Car Makes" />
         </SelectTrigger>
         <SelectContent>
           {Data.CarMakes.map((maker, index) => (
@@ -48,7 +49,7 @@ function Search() {
       <Separator orientation="vertical" className="hidden md:block" />
 
       <Select onValueChange={(value) => setPrice(value)}>
-        <SelectTrigger className=" outline-none md:border-none w-full shadow-none text-lg">
+        <SelectTrigger className="outline-none md:border-none w-full shadow-none text-lg">
           <SelectValue placeholder="Pricing" />
         </SelectTrigger>
         <SelectContent>
@@ -59,8 +60,9 @@ function Search() {
           ))}
         </SelectContent>
       </Select>
+
       <Link to={"/search?cars=" + cars + "&make=" + make + "&price=" + price}>
-        <CiSearch className="text-[50px] bg-primary rounded-full p-3 text-white hover:scale-105 transition-all cursor-pointer" />
+        <CiSearch className="text-[40px] md:text-[50px] bg-primary rounded-full p-3 text-white hover:scale-105 transition-all cursor-pointer" />
       </Link>
     </div>
   );
