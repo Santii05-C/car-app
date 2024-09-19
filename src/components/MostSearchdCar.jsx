@@ -29,7 +29,7 @@ function MostSearchdCar() {
       .limit(10);
 
     const resp = Service.FormatResult(result);
-    // console.log(resp);
+
     setCarList(resp);
   };
   return (
@@ -41,10 +41,7 @@ function MostSearchdCar() {
       <Carousel>
         <CarouselContent>
           {carList.map((car, index) => (
-            <CarouselItem
-              className="basis-1/2 md:basis-1/3 lg:basis-1/4"
-              key={index}
-            >
+            <CarouselItem className=" md:basis-1/3 lg:basis-1/4" key={index}>
               <CarItem car={car} />
             </CarouselItem>
           ))}
