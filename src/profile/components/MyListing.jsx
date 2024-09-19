@@ -25,7 +25,7 @@ function MyListing() {
       .orderBy(desc(CarListing.id));
 
     const resp = Service.FormatResult(result);
-    console.log(resp);
+
     setCarList(resp);
   };
   return (

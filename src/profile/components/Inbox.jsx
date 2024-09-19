@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { App as SendbirdApp, SendBirdProvider } from "@sendbird/uikit-react";
+import { App as SendBirdProvider } from "@sendbird/uikit-react";
 import "@sendbird/uikit-react/dist/index.css";
 import { useUser } from "@clerk/clerk-react";
 import { GroupChannel } from "@sendbird/uikit-react/GroupChannel";
@@ -9,11 +9,11 @@ function Inbox() {
   const { user } = useUser();
   const [userId, setUserId] = useState();
   const [channelUrl, setChannelUrl] = useState();
-
+  console.log(channelUrl);
   useEffect(() => {
     if (user) {
       const id = (user.primaryEmailAddress?.emailAddress).split("@")[0];
-      setUserId(userId);
+      setUserId(id);
     }
   }, [user]);
 
@@ -27,17 +27,20 @@ function Inbox() {
           profileUrl={user?.imageUrl}
           allowProfileEdit={true}
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 h-full">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3 h-full">
             {/* CHANNEL LIST */}
-            <div>
+            <div className="p-5 border shadow-lg">
               <GroupChannelList
                 onChannelSelect={(channel) => {
                   setChannelUrl(channel?.url);
                 }}
+                channelListQueryParams={{
+                  includeEmpty: true,
+                }}
               />
             </div>
             {/* CHANNEL / MESSAGE AREA */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 shadow-lg">
               <GroupChannel channelUrl={channelUrl} />
             </div>
           </div>
