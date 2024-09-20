@@ -11,10 +11,10 @@ function DetailsHeader({ carDetail }) {
           <h2 className="font-bold text-3xl">{carDetail?.listingTitle}</h2>
           <p className="text-sm">{carDetail?.tagline}</p>
 
-          <div className="flex gap-2 mt-3">
-            <div className="flex gap-2 items-center bg-blue-50 rounded-full p-2 px-3">
+          <div className="flex flex-col sm:flex-row items-center gap-2 mt-3 ">
+            <div className="  flex gap-2 items-center bg-blue-50 rounded-full p-2 px-3">
               <HiCalendarDays className="h-5 w-5 text-primary" />
-              <h2 className="text-primary text-sm">{carDetail?.year}</h2>
+              <h2 className=" text-primary text-sm">{carDetail?.year}</h2>
             </div>
             <div className="flex gap-2 items-center bg-blue-50 rounded-full p-2 px-3">
               <BsSpeedometer2 className="h-5 w-5 text-primary" />
