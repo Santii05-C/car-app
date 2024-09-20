@@ -1,4 +1,3 @@
-import FakerData from "@/Shared/FakerData";
 import CarItem from "./CarItem";
 import {
   Carousel,
