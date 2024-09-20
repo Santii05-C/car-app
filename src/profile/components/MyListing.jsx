@@ -16,6 +16,7 @@ function MyListing() {
   useEffect(() => {
     user && GetUserCarListing();
   }, [user]);
+
   const GetUserCarListing = async () => {
     const result = await db
       .select()
@@ -28,20 +29,21 @@ function MyListing() {
 
     setCarList(resp);
   };
+
   return (
     <div className="mt-6">
-      <div className="flex justify-between items-center">
-        <h2 className="font-bold text-4xl">My Listing</h2>
+      <div className="flex flex-col gap-5 md:flex-row justify-between items-center">
+        <h2 className="font-bold text-3xl md:text-4xl">My Listings</h2>
         <Link to={"/add-listing"}>
-          <Button>+ Add New Listing</Button>
+          <Button className="text-sm ">+ Add New Listing</Button>
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols 3 lg:grid-cols-4 mt-7 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-7 gap-5">
         {carList.map((item, index) => (
           <div key={index}>
             <CarItem car={item} />
-            <div className="p-2 bg-gray-50 rounded-lg flex justify-between gap-3">
+            <div className="p-2 bg-gray-50 rounded-lg flex flex-col sm:flex-row justify-between gap-3">
               <Link
                 to={"/add-listing?mode=edit&id=" + item?.id}
                 className="w-full"
@@ -50,7 +52,7 @@ function MyListing() {
                   Edit
                 </Button>
               </Link>
-              <Button variant="destructive">
+              <Button variant="destructive" className="w-full sm:w-auto">
                 <FaTrashAlt />
               </Button>
             </div>

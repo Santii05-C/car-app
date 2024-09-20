@@ -16,7 +16,7 @@ function CarItem({ car }) {
           src={car?.images[0]?.imageUrl}
           width={"100%"}
           height={250}
-          className="rounded-t-xl h-[180px] object-cover"
+          className=" inset-0 h-full w-full rounded-t-xl  object-cover"
         />
         <div className="p-4">
           <h2 className="font-bold text-black text-lg mb-2 md:text-xl">
