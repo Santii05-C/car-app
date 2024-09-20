@@ -77,41 +77,40 @@ function UploadImages({ triggleUploadImages, setLoader, carInfo, mode }) {
   return (
     <div>
       <h2 className="font-medium text-xl my-3">Upload Car Images</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
-        {mode == "edit" &&
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
+        {mode === "edit" &&
           editCarImageList.map((image, index) => (
-            <div key={index}>
+            <div className="relative" key={index}>
               <IoMdCloseCircle
-                className="absolute m-2 text-lg text-white cursor-pointer"
+                className="absolute top-2 right-2 text-lg text-white cursor-pointer"
                 onClick={() => onImageRemoveFromDB(image, index)}
               />
               <img
                 src={image}
-                className="w-full h-[130px] object-cover rounded-xl"
+                className="w-full h-auto aspect-[4/3] object-cover rounded-xl"
               />
             </div>
           ))}
 
         {selectedFilesList.map((image, index) => (
-          <div key={index}>
+          <div className="relative" key={index}>
             <IoMdCloseCircle
-              className="absolute m-2 text-lg text-white cursor-pointer"
+              className="absolute top-2 right-2 text-lg text-white cursor-pointer"
               onClick={() => onImageRemove(image, index)}
             />
             <img
               src={URL.createObjectURL(image)}
-              className="w-full h-[130px] object-cover rounded-xl"
+              className="w-full h-auto aspect-[4/3] object-cover rounded-xl"
             />
           </div>
         ))}
+
         <label htmlFor="upload-images">
-          <div
-            className="border rounded-xl border-dotted
-           border-primary bg-blue-100 p-10 cursor-pointer hover:shadow-md"
-          >
+          <div className="w-[100px] md:w-[200px] border rounded-xl border-dotted border-primary bg-blue-100 p-10 cursor-pointer hover:shadow-md flex items-center justify-center">
             <h2 className="text-lg text-center text-primary">+</h2>
           </div>
         </label>
+
         <input
           type="file"
           multiple={true}

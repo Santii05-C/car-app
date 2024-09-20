@@ -169,7 +169,7 @@ function AddListing() {
           {/* FEATURES LIST  */}
           <div className="">
             <h2 className="font-medium text-xl my-6">Features</h2>
-            <div className=" grid grid-cols-2  sm:grid-cols-2 text-sm md:grid-cols-3 gap-2 ">
+            <div className=" grid grid-cols-1  sm:grid-cols-2 text-sm md:grid-cols-3 gap-2 ">
               {features.features.map((item, index) => (
                 <div className="flex gap-2 items-center" key={index}>
                   <Checkbox

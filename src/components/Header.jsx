@@ -7,7 +7,7 @@ function Header() {
   return (
     <div className="flex justify-between items-center shadow-sm p-5">
       <a href="/">
-        <img src="/logo.svg" width={150} height={100} />
+        <img src="/logo.svg" className="w-[100px] md:w-[150px]" />
       </a>
 
       <ul className="hidden md:flex gap-16">
@@ -26,7 +26,7 @@ function Header() {
       </ul>
 
       {isSignedIn ? (
-        <div className="flex items-center gap-5">
+        <div className="flex gap-2 items-center md:gap-5  ">
           <UserButton />
           <Link to={"/profile"}>
             <Button>Submit Listing</Button>

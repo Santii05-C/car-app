@@ -17,5 +17,5 @@ function Features({ features }) {
     </div>
   );
 }
-//5:23
+
 export default Features;
