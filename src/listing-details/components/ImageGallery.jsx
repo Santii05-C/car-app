@@ -3,7 +3,7 @@ function ImageGallery({ carDetail }) {
     <div>
       <img
         src={carDetail?.images[0].imageUrl}
-        className="w-full h-[500px] object-cover rounded-xl"
+        className="w-full h-full object-cover rounded-xl"
       />
     </div>
   );

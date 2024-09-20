@@ -128,7 +128,7 @@ function AddListing() {
     <div>
       <Header />
       <div className="px-10 md:px-20 my-10">
-        <h2 className="font-bold text-4xl">Add New Listing</h2>
+        <h2 className="text-2xl font-bold md:text-4xl">Add New Listing</h2>
 
         <form className="p-10 border rounded-xl mt-10">
           {/* CAR DETAILS */}
