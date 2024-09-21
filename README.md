@@ -1,4 +1,4 @@
-# Ecommerce-ArCdev
+# Car Marketplace
 
 Full-Stack Car Marketplace, app created with React, Tailwindcss, Drizzle ORM, Clerk
 
