@@ -75,7 +75,6 @@ function AddListing() {
       ...prevData,
       [name]: value,
     }));
-    console.log(featuresData);
   };
 
   const onSubmit = async (e) => {
