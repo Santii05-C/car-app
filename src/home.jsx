@@ -1,4 +1,3 @@
-// import { SignInButton } from "@clerk/clerk-react";
 import Category from "./components/Category";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -9,11 +8,6 @@ import MostSearchdCar from "./components/MostSearchdCar";
 function Home() {
   return (
     <div>
-      {/* <div>
-        <SignInButton>
-          <button>Sign</button>
-        </SignInButton>
-      </div> */}
       {/* HEADER */}
       <Header />
       {/* HERO */}

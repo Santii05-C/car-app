@@ -1,3 +1,4 @@
+import { SignInButton } from "@clerk/clerk-react";
 import { UserButton, useUser } from "@clerk/clerk-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
@@ -29,11 +30,15 @@ function Header() {
         <div className="flex gap-2 items-center md:gap-5  ">
           <UserButton />
           <Link to={"/profile"}>
-            <Button>Submit Listing</Button>
+            <div className="flex">
+              <Button>Submit Listing </Button>
+            </div>
           </Link>
         </div>
       ) : (
-        <Button>Submit Listing</Button>
+        <SignInButton>
+          <Button className="flex">Log In</Button>
+        </SignInButton>
       )}
     </div>
   );
